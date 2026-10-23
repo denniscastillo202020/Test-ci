@@ -6,33 +6,55 @@
 <title>Test de CI · Diploma</title>
 <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Nunito:wght@500;800&family=Pinyon+Script&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#10231c;--ink:#f4f1e6;--gold:#e0a82e;--paper:#e9f1ea;--green:#1b4332;--card:#18382d;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+:root{--bg:#0c1624;--card:#152338;--line:#2a3f5c;--ink:#eef2f7;--mut:#9fb0c6;--gold:#f2b84b;--ok:#58c48a;--bad:#e5584b;--paper:#eef3f9;--green:#12263f;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 *,*::before,*::after{box-sizing:inherit}
-html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Nunito,system-ui,sans-serif;font-size:17px}
-main{max-width:560px;margin:0 auto;padding:20px 18px 40px}
-h1,h2{font-family:'Alfa Slab One',Georgia,serif;font-weight:400;line-height:1.15;margin:0 0 14px}
-h1{font-size:2.3rem;color:var(--gold)}
-h2{font-size:1.35rem}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Nunito,system-ui,sans-serif;font-size:17px;-webkit-tap-highlight-color:transparent}
+main{max-width:560px;margin:0 auto;padding:18px 16px 44px}
+h1,h2{font-family:'Alfa Slab One',Georgia,serif;font-weight:400;line-height:1.2;margin:0 0 14px}
+h1{font-size:2.4rem;color:var(--gold)}
+h2{font-size:1.3rem}
 p{line-height:1.5;margin:0 0 14px}
-input{width:100%;padding:14px;border-radius:10px;border:2px solid var(--gold);background:var(--card);color:var(--ink);font:inherit;margin-bottom:14px}
-button{font:inherit;font-weight:800;cursor:pointer;border:0;border-radius:10px;padding:14px 18px;background:var(--gold);color:#1b1405;width:100%}
+input{width:100%;padding:14px;border-radius:12px;border:2px solid var(--line);background:var(--card);color:var(--ink);font:inherit;margin-bottom:14px}
+input:focus{border-color:var(--gold)}
+button{font:inherit;font-weight:800;cursor:pointer;border:0;border-radius:12px;padding:15px 18px;background:var(--gold);color:#1b1405;width:100%}
 button:focus-visible,input:focus-visible{outline:3px solid #fff;outline-offset:2px}
-.opt{background:var(--card);color:var(--ink);text-align:left;margin-bottom:10px;border:2px solid #2d5a49;font-weight:500}
-.opt:active{border-color:var(--gold)}
-.bar{height:8px;background:var(--card);border-radius:8px;margin-bottom:8px;overflow:hidden}
-.bar i{display:block;height:100%;background:var(--gold)}
-.tm{height:10px;background:var(--card);border-radius:10px;margin:0 0 18px;overflow:hidden}
-.tm i{display:block;height:100%;width:100%;background:#58c48a;transition:width 12s linear,background .3s}
-.tm i.low{background:#e5584b}
-.big{font-size:3.4rem;line-height:1.2;text-align:center;margin:6px 0 16px;letter-spacing:.06em;overflow-wrap:anywhere}
-.mem{font-size:2.3rem;font-family:'Alfa Slab One',serif;color:var(--gold)}
-.small{font-size:.85rem;opacity:.75}
+.small{font-size:.85rem;color:var(--mut)}
+.bar{height:6px;background:var(--line);border-radius:6px;margin-bottom:14px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--gold);transition:width .4s}
+.top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
+.chip{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:20px;padding:6px 13px;font-weight:800;font-size:.88rem}
+.chip i{width:10px;height:10px;border-radius:50%}
+.ring{position:relative;width:58px;height:58px;flex:none}
+.ring svg{transform:rotate(-90deg);display:block}
+.ring circle{fill:none;stroke-width:5}
+.ring .bg{stroke:var(--line)}
+.ring .fg{stroke:var(--ok);stroke-linecap:round;stroke-dasharray:150.8;stroke-dashoffset:0;transition-property:stroke-dashoffset;transition-timing-function:linear}
+.ring.low .fg{stroke:var(--bad)}
+.ring b{position:absolute;inset:0;display:grid;place-items:center;font-family:'Alfa Slab One',serif;font-weight:400;font-size:1.15rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:14px}
+.big{font-size:3rem;line-height:1.25;text-align:center;margin:2px 0 14px;letter-spacing:.05em;overflow-wrap:anywhere}
+.mem{font-size:2.2rem;font-family:'Alfa Slab One',serif;color:var(--gold);margin:10px 0}
+.opt{display:flex;gap:12px;align-items:center;background:var(--card);color:var(--ink);text-align:left;margin-bottom:10px;border:2px solid var(--line);font-weight:500;transition:transform .12s,border-color .12s,background .12s}
+.opt .k{flex:none;width:30px;height:30px;border-radius:8px;background:var(--line);display:grid;place-items:center;font-weight:800;font-size:.9rem}
+@media(hover:hover){.opt:hover{border-color:var(--gold)}}
+.opt:active{transform:scale(.98)}
+.opt.sel{border-color:var(--gold);background:#22364f}
+.opt.sel .k{background:var(--gold);color:#1b1405}
+.opt.off{opacity:.4;pointer-events:none}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:16px 0}
+.stats div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 6px;text-align:center}
+.stats b{display:block;font-family:'Alfa Slab One',serif;font-weight:400;font-size:1.5rem;color:var(--gold)}
+.brk{margin-top:18px}
+.brk div{display:grid;grid-template-columns:104px 1fr 40px;gap:10px;align-items:center;margin-bottom:9px;font-size:.9rem}
+.brk .tr{height:8px;background:var(--line);border-radius:8px;overflow:hidden}
+.brk .tr i{display:block;height:100%;background:var(--ok)}
 .dip{background:var(--paper);color:var(--green);border:10px double #c9962b;padding:26px 16px;text-align:center;border-radius:4px}
 .dip h2{font-size:1.5rem;color:var(--green)}
 .nm{font-family:'Pinyon Script',cursive;font-size:2.6rem;line-height:1.1;margin:6px 0;border-bottom:2px solid var(--green);display:inline-block;padding:0 10px;max-width:100%;overflow-wrap:anywhere}
 .ci{font-family:'Alfa Slab One',serif;font-size:4rem;line-height:1;margin:10px 0 2px}
 .ttl{font-weight:800;font-size:1.15rem;margin:8px 0}
-.seal{width:84px;height:84px;border-radius:50%;margin:16px auto 8px;background:radial-gradient(circle,#f1c453,#b8841c);color:#4a3306;display:grid;place-items:center;font-family:'Alfa Slab One',serif;font-size:.8rem;box-shadow:0 0 0 5px #e9f1ea,0 0 0 8px #c9962b}
+.dip .small{color:var(--green);opacity:.75}
+.seal{width:84px;height:84px;border-radius:50%;margin:16px auto 8px;background:radial-gradient(circle,#f1c453,#b8841c);color:#4a3306;display:grid;place-items:center;font-family:'Alfa Slab One',serif;font-size:.8rem;box-shadow:0 0 0 5px #eef3f9,0 0 0 8px #c9962b}
 .btns{display:grid;gap:10px;margin-top:16px}
 .btns .alt{background:transparent;color:var(--ink);border:2px solid var(--gold)}
 .rk{margin-top:26px}
@@ -46,7 +68,7 @@ button:focus-visible,input:focus-visible{outline:3px solid #fff;outline-offset:2
 .pd>div{flex:1;text-align:center;min-width:0}
 .pd .pn{font-weight:800;overflow-wrap:anywhere;line-height:1.2}
 .pd .st{border-radius:8px 8px 0 0;display:grid;place-items:center;margin-top:6px;color:#1b1405;font-family:'Alfa Slab One',serif;font-size:1.6rem}
-@media(prefers-reduced-motion:reduce){.tm i{transition-duration:12s}}
+@media(prefers-reduced-motion:reduce){.bar i,.opt{transition:none}}
 </style>
 </head>
 <body>
@@ -58,36 +80,38 @@ import{getFirestore,doc,getDoc,setDoc,addDoc,getDocs,collection,query,orderBy,li
 var firebaseConfig={apiKey:"AIzaSyCpmJ-6HXrfLa4CxSLiHodlrD-ffE1U7Ns",authDomain:"test-de-ci-66304.firebaseapp.com",projectId:"test-de-ci-66304",storageBucket:"test-de-ci-66304.firebasestorage.app",messagingSenderId:"131272562014",appId:"1:131272562014:web:5d084ef5a10253eb60abcf"};
 var app0=initializeApp(firebaseConfig),auth=getAuth(app0),db=getFirestore(app0),user=null,jugando=false;
 var Q=[
-{q:"¿Cuál es la capital de Honduras?",v:"🇭🇳",o:["San Pedro Sula","Tegucigalpa","Comayagua","La Ceiba"],a:1},
-{q:"¿Cuál es la capital de Francia?",v:"🇫🇷",o:["Lyon","Marsella","París","Niza"],a:2},
-{q:"¿Cuál es la capital de Japón?",v:"🇯🇵",o:["Tokio","Pekín","Seúl","Osaka"],a:0},
-{q:"¿Cuál es la capital de Brasil?",v:"🇧🇷",o:["Río de Janeiro","São Paulo","Brasilia","Salvador"],a:2},
-{q:"¿De qué país es esta bandera?",v:"🇮🇹",o:["Italia","México","Irlanda","Hungría"],a:0},
-{q:"¿Cuál es el planeta rojo?",v:"🪐",o:["Venus","Júpiter","Marte","Saturno"],a:2},
-{q:"¿Cuál es el océano más grande?",v:"🌊",o:["Atlántico","Pacífico","Índico","Ártico"],a:1},
-{q:"¿Cuántas patas tiene una araña?",v:"🕷️",o:["6","8","10","4"],a:1},
-{q:"¿Cuál es la moneda de Honduras?",v:"💵",o:["Quetzal","Colón","Lempira","Córdoba"],a:2},
-{q:"¿Quién pintó la Mona Lisa?",v:"🖼️",o:["Picasso","Da Vinci","Van Gogh","Dalí"],a:1},
-{q:"¿Quién ganó el Mundial de 2022?",v:"🏆",o:["Francia","Brasil","Argentina","Croacia"],a:2},
-{q:"¿Qué sigue en la secuencia?",v:"🔴🔵🔴🔵🔴❓",o:["🔴","🔵","🟡","🟢"],a:1},
-{q:"¿Qué sigue en la secuencia?",v:"🟦🟦🟨🟦🟦🟨🟦🟦❓",o:["🟦","🟨","🟥","🟩"],a:1},
-{q:"¿Qué número sigue?",v:"2 · 4 · 6 · 8 · ❓",o:["9","10","12","14"],a:1},
-{q:"¿Qué palabra no encaja con las demás?",v:"🍎 🍌 🥕 🍇",o:["Manzana","Banano","Zanahoria","Uva"],a:2},
-{q:"Pájaro es a volar como pez es a…",v:"🐦 ➜ 🐟",o:["Correr","Nadar","Saltar","Cantar"],a:1},
-{q:"¿Qué pesa más: un kilo de plumas o un kilo de piedras?",v:"🪶 🪨",o:["Las plumas","Las piedras","Pesan igual","Depende"],a:2},
-{q:"Descifra la palabra: las letras están revueltas",v:"R R O P E",o:["PERRO","PUERTO","PRIMO","POZO"],a:0},
-{q:"Descifra la palabra: las letras están revueltas",v:"B O L R A",o:["LIBRO","ÁRBOL","MORAL","PLAYA"],a:1},
-{q:"Descifra la palabra: las letras están revueltas",v:"T N O M A Ñ A",o:["MAÑANA","MANZANA","MONTAÑA","CAMPANA"],a:2},
-{q:"¿Cuál es un sinónimo de feliz?",v:"😀",o:["Triste","Contento","Cansado","Enojado"],a:1},
-{q:"¿Qué letra falta para formar una palabra?",v:"C A M _ N O",o:["A","E","I","U"],a:2},
-{s:"5 8 2 7 1",ms:3500,q:"¿Cuál era el tercer número?",o:["2","8","7","1"],a:0},
-{s:"9 4 6 3",ms:3000,q:"¿Cuál era el último número?",o:["9","4","6","3"],a:3},
-{s:"🐶 🚗 🍕 🏠",ms:3500,q:"¿Cuál iba en segundo lugar?",o:["🐶","🚗","🍕","🏠"],a:1},
-{s:"🔴 🟢 🔵 🟡",ms:3500,q:"¿Qué color iba primero?",o:["🟢","🔵","🔴","🟡"],a:2},
-{s:"MANGO LIMÓN PIÑA",ms:3500,q:"¿Qué fruta iba en medio?",o:["Mango","Limón","Piña","Uva"],a:1},
-{s:"7 3 9 2 5 8",ms:4500,q:"¿Qué número estaba en la posición 4?",o:["3","9","2","5"],a:2},
-{s:"🐱 🐸 🦊",ms:3000,q:"¿Cuál de estos animales NO estaba?",o:["🐱","🐸","🦊","🐵"],a:3},
-{s:"ANA · 37",ms:3500,q:"¿Qué número acompañaba al nombre?",o:["73","37","27","38"],a:1}
+{c:"Matemática",q:"Un tren sale a las 8:15 y llega a las 11:45. ¿Cuánto dura el viaje?",v:"🚆",t:15000,o:["3 h 15 min","3 h 30 min","4 h","2 h 45 min"],a:1},
+{c:"Matemática",q:"Un producto cuesta L 800 y tiene 25% de descuento. ¿Cuánto pagás?",v:"🏷️",t:15000,o:["L 550","L 600","L 650","L 700"],a:1},
+{c:"Matemática",q:"Si 3 camisas cuestan L 450, ¿cuánto cuestan 7 camisas?",v:"👕",t:15000,o:["L 900","L 1,000","L 1,050","L 1,150"],a:2},
+{c:"Lógica",q:"¿Qué número sigue en la serie?",v:"2 · 3 · 5 · 8 · 12 · ❓",t:15000,o:["15","16","17","18"],a:2},
+{c:"Matemática",q:"La suma de dos números es 20 y su diferencia es 4. ¿Cuál es el mayor?",v:"➕➖",t:15000,o:["10","11","12","14"],a:2},
+{c:"Matemática",q:"Un grifo llena un balde en 6 minutos. ¿Cuántos baldes llena en una hora?",v:"🚰",t:15000,o:["6","8","10","12"],a:2},
+{c:"Lógica",q:"Todos los A son B. Ningún B es C. Entonces…",v:"🧠",t:15000,o:["Algunos A son C","Ningún A es C","Todos los C son A","No se puede saber"],a:1},
+{c:"Lógica",q:"Un cuaderno y un lápiz cuestan L 55 juntos. El cuaderno cuesta L 50 más que el lápiz. ¿Cuánto cuesta el lápiz?",v:"📓✏️",t:15000,o:["L 5","L 2.50","L 2","L 5.50"],a:1},
+{c:"Lógica",q:"En una carrera adelantás al que va en segundo lugar. ¿En qué puesto quedás?",v:"🏃🏃🏃",t:15000,o:["Primero","Segundo","Tercero","Último"],a:1},
+{c:"Lógica",q:"¿Qué letra sigue?",v:"A · C · F · J · ❓",t:15000,o:["N","O","P","M"],a:1},
+{c:"Lógica",q:"Si ayer fue martes, ¿qué día será pasado mañana?",v:"📅",t:15000,o:["Jueves","Viernes","Sábado","Domingo"],a:1},
+{c:"Lógica",q:"¿Qué número no pertenece al grupo?",v:"2 · 3 · 5 · 9 · 11",t:15000,o:["2","5","9","11"],a:2},
+{c:"Física",q:"En el vacío, ¿qué cae más rápido: una pluma o una bola de acero?",v:"🪶 ⚙️",o:["La pluma","La bola de acero","Caen igual","Depende del peso"],a:2},
+{c:"Física",q:"¿Cuál es la unidad de fuerza en el Sistema Internacional?",v:"⚖️",o:["Joule","Newton","Watt","Pascal"],a:1},
+{c:"Física",q:"¿Qué gas forma la mayor parte del aire que respiramos?",v:"🌬️",o:["Oxígeno","Nitrógeno","Dióxido de carbono","Argón"],a:1},
+{c:"Cultura",q:"¿En qué año llegó el ser humano por primera vez a la Luna?",v:"🌕",o:["1965","1969","1972","1975"],a:1},
+{c:"Cultura",q:"¿Quién escribió “Cien años de soledad”?",v:"📚",o:["García Márquez","Vargas Llosa","Cortázar","Borges"],a:0},
+{c:"Cultura",q:"¿Cuál es el país más grande del mundo por superficie?",v:"🗺️",o:["Canadá","China","Rusia","Estados Unidos"],a:2},
+{c:"Cultura",q:"¿Cuál es la capital de Australia?",v:"🇦🇺",o:["Sídney","Melbourne","Canberra","Perth"],a:2},
+{c:"Cultura",q:"¿Qué civilización construyó las ruinas de Copán, en Honduras?",v:"🏛️",o:["Azteca","Maya","Inca","Olmeca"],a:1},
+{c:"Música",q:"¿Cuántas notas tiene la escala musical básica (do, re, mi…)?",v:"🎼",o:["5","7","8","12"],a:1},
+{c:"Música",q:"¿Qué banda interpretó “Bohemian Rhapsody”?",v:"🎤",o:["Queen","The Beatles","Led Zeppelin","Pink Floyd"],a:0},
+{c:"Música",q:"¿Qué cantante colombiana es conocida por “Hips Don’t Lie”?",v:"🎶",o:["Shakira","Karol G","Thalía","Selena"],a:0},
+{c:"Música",q:"¿Qué compositor, ya sordo, escribió la Novena Sinfonía?",v:"🎹",o:["Mozart","Beethoven","Bach","Chopin"],a:1},
+{c:"Física",q:"¿Qué tipo de energía tiene un objeto por estar en movimiento?",v:"🎢",o:["Potencial","Cinética","Térmica","Química"],a:1}
+];
+var MEM=[
+{s:"7 2 9 4 1 8",ms:5000,q:"¿Cuál era el tercer número?",o:["9","2","4","7"],a:0},
+{s:"ROJO · AZUL · VERDE · NEGRO",ms:5000,q:"¿Cuál era el segundo color?",o:["Rojo","Azul","Verde","Negro"],a:1},
+{s:"🐘 🦁 🐢 🦅 🐬",ms:5000,q:"¿Qué animal iba en cuarto lugar?",o:["🦅","🐢","🦁","🐬"],a:0},
+{s:"MARTA 4 · JOSÉ 9 · LUIS 6",ms:6000,q:"¿Qué número tenía JOSÉ?",o:["4","9","6","7"],a:1},
+{s:"X 3 · K 8 · P 5 · M 2",ms:6000,q:"¿Qué número iba con la letra P?",o:["3","8","5","2"],a:2}
 ];
 var T=[
 {f:.9,t:"Doctor Honoris Causa en Pensadera",m:"Hasta Einstein te pide tareas."},
@@ -101,41 +125,73 @@ var T=[
 var app=document.getElementById('app'),nombre='',L=[],i=0,pts=0,miss=0,tm=null;
 function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML}
 function sh(a){a=a.slice();for(var k=a.length-1;k>0;k--){var j=Math.floor(Math.random()*(k+1)),t=a[k];a[k]=a[j];a[j]=t}return a}
+function intro(){return '<div class="stats"><div><b>30</b><span class="small">preguntas</span></div><div><b>12-15</b><span class="small">segundos</span></div><div><b>6</b><span class="small">áreas</span></div></div>'}
 function inicio(){
  clearTimeout(tm);stop();jugando=false;
  if(!user){
-  app.innerHTML='<h1>Test de CI</h1><p>'+Q.length+' preguntas de todo: países, capitales, cultura general, lógica, palabras y memoria. Tenés <b>12 segundos</b> por pregunta. Entrá con tu cuenta para que tus resultados se guarden y salgas en el ranking.</p><button id="lg">Entrar con Google</button><p class="small" id="er" style="margin-top:14px">Es solo para divertirse: no mide el CI real.</p>';
+  app.innerHTML='<h1>Test de CI</h1><p>Ponete a prueba con lógica, matemática, física, cultura, música y memoria. Entrá con tu cuenta para guardar tus resultados y competir en el ranking.</p>'+intro()+'<button id="lg">Entrar con Google</button><p class="small" id="er" style="margin-top:14px">Es solo para divertirse: no mide el CI real.</p>';
   document.getElementById('lg').onclick=function(){signInWithPopup(auth,new GoogleAuthProvider()).catch(function(e){document.getElementById('er').textContent='No se pudo entrar: '+(e.code||'error')})};
   return;
  }
- app.innerHTML='<h1>Test de CI</h1><p>Hola. Son '+Q.length+' preguntas, <b>12 segundos</b> cada una. Se guarda tu mejor resultado y todos tus intentos.</p><input id="n" maxlength="30" placeholder="Tu nombre" autocomplete="off" value="'+esc((user.displayName||'').split(' ')[0])+'"><button id="go">Empezar el test</button><p class="small" style="margin-top:14px"><a href="#" id="so" style="color:inherit">Salir de esta cuenta</a> · Es solo diversión, no mide el CI real.</p>';
+ app.innerHTML='<h1>Test de CI</h1><p>Tenés un tiempo límite por pregunta y no se puede volver atrás. Algunas te piden memorizar algo y te lo preguntan más adelante. Se guarda tu mejor resultado y todos tus intentos.</p>'+intro()+'<input id="n" maxlength="30" placeholder="Tu nombre" autocomplete="off" value="'+esc((user.displayName||'').split(' ')[0])+'"><button id="go">Empezar el test</button><p class="small" style="margin-top:14px"><a href="#" id="so" style="color:inherit">Salir de esta cuenta</a> · Solo diversión, no mide el CI real.</p>';
  document.getElementById('go').onclick=function(){var v=document.getElementById('n').value.trim();if(!v){document.getElementById('n').focus();return}nombre=v;empezar()};
  document.getElementById('so').onclick=function(e){e.preventDefault();signOut(auth)};
 }
-function empezar(){stop();jugando=true;L=sh(Q);i=0;pts=0;miss=0;paso()}
-function head(){return '<div class="bar"><i style="width:'+(i/L.length*100)+'%"></i></div><p class="small">Pregunta '+(i+1)+' de '+L.length+'</p>'}
+var SL=1,TOT=0,qn=0,iv=null,CAT={},COL={'Matemática':'#f2b84b','Lógica':'#7aa2f7','Física':'#58c48a','Cultura':'#e5584b','Música':'#c792ea','Memoria':'#4dd0e1'};
+function chip(c,extra){return '<span class="chip"><i style="background:'+COL[c]+'"></i>'+c+(extra||'')+'</span>'}
+function ring(ms){return '<div class="ring" id="rg"><svg width="58" height="58" viewBox="0 0 58 58"><circle class="bg" cx="29" cy="29" r="24"/><circle class="fg" id="rc" cx="29" cy="29" r="24" style="transition-duration:'+ms+'ms"/></svg><b id="sc">'+Math.ceil(ms/1000)+'</b></div>'}
+function run(ms){
+ var rc=document.getElementById('rc');rc.getBoundingClientRect();rc.style.strokeDashoffset='150.8';
+ var t0=Date.now();clearInterval(iv);
+ iv=setInterval(function(){var r=Math.max(0,ms-(Date.now()-t0)),sc=document.getElementById('sc'),rg=document.getElementById('rg');if(!sc){clearInterval(iv);return}sc.textContent=Math.ceil(r/1000);if(r<=3000)rg.classList.add('low')},200);
+}
+function head(){return '<div class="bar"><i style="width:'+(i/SL*100)+'%"></i></div>'}
+function empezar(){
+ stop();jugando=true;CAT={};
+ var N=sh(Q),M=sh(MEM),S=[],pend=[],mi=0;
+ function rec(m){return{q:m.q,o:m.o,a:m.a,mem:1,c:'Memoria',t:12000}}
+ for(var k=0;k<N.length;k++){
+  if(k%5===0&&mi<M.length){var m=M[mi++];S.push({s:m.s,ms:m.ms});pend.push({m:m,r:4})}
+  S.push(N[k]);
+  pend.forEach(function(p){p.r--});
+  pend=pend.filter(function(p){if(p.r<=0){S.push(rec(p.m));return false}return true});
+ }
+ pend.forEach(function(p){S.push(rec(p.m))});
+ L=S;SL=S.length;TOT=S.filter(function(x){return !x.s}).length;i=0;pts=0;miss=0;qn=0;paso();
+}
 function paso(){
  var q=L[i];window.scrollTo(0,0);
  if(q.s){
-  app.innerHTML=head()+'<h2>Memorizá esto</h2><div class="big mem">'+esc(q.s)+'</div><div class="tm"><i id="b" style="transition-duration:'+q.ms+'ms"></i></div>';
-  go();tm=setTimeout(function(){ask(q)},q.ms);
+  app.innerHTML=head()+'<div class="top">'+chip('Memoria',' · memorizá')+ring(q.ms)+'</div><div class="card"><p class="small" style="text-align:center;margin:0">Te lo pregunto más adelante</p><div class="big mem">'+esc(q.s)+'</div></div>';
+  run(q.ms);tm=setTimeout(function(){clearInterval(iv);i++;paso()},q.ms);
  }else ask(q);
 }
-function go(){var b=document.getElementById('b');b.offsetWidth;b.style.width='0%'}
 function ask(q){
+ var T=q.t||12000,c=q.c||'Cultura';
  var o=sh(q.o.map(function(t,k){return{t:t,ok:k===q.a}}));
- var h=head()+'<div class="tm"><i id="b"></i></div>'+(q.v?'<div class="big">'+q.v+'</div>':'')+'<h2>'+esc(q.q)+'</h2>';
- o.forEach(function(x,k){h+='<button class="opt" data-k="'+k+'">'+esc(x.t)+'</button>'});
- app.innerHTML=h;go();
- var low=setTimeout(function(){var b=document.getElementById('b');if(b)b.className='low'},9000);
- function fin(ok,to){clearTimeout(tm);clearTimeout(low);if(ok)pts++;if(to)miss++;i++;i<L.length?paso():diploma()}
- Array.prototype.forEach.call(app.querySelectorAll('.opt'),function(b){b.onclick=function(){fin(o[+b.dataset.k].ok,false)}});
- tm=setTimeout(function(){fin(false,true)},12000);
+ var h=head()+'<div class="top">'+chip(c,' · '+(qn+1)+'/'+TOT)+ring(T)+'</div><div class="card">'+(q.v?'<div class="big">'+q.v+'</div>':'')+(q.mem?'<p class="small" style="text-align:center">Sobre lo que memorizaste antes</p>':'')+'<h2 style="margin:0">'+esc(q.q)+'</h2></div>';
+ o.forEach(function(x,k){h+='<button class="opt" data-k="'+k+'"><span class="k">'+'ABCD'[k]+'</span><span>'+esc(x.t)+'</span></button>'});
+ app.innerHTML=h;run(T);
+ function fin(ok,to){clearInterval(iv);if(!CAT[c])CAT[c]=[0,0];CAT[c][1]++;if(ok){pts++;CAT[c][0]++}if(to)miss++;qn++;i++;i<L.length?paso():diploma()}
+ var done=false;
+ Array.prototype.forEach.call(app.querySelectorAll('.opt'),function(b){b.onclick=function(){
+  if(done)return;done=true;clearTimeout(tm);clearInterval(iv);
+  var rc=document.getElementById('rc');if(rc){rc.style.strokeDashoffset=getComputedStyle(rc).strokeDashoffset;rc.style.transition='none'}
+  Array.prototype.forEach.call(app.querySelectorAll('.opt'),function(x){x.classList.add(x===b?'sel':'off')});
+  var ok=o[+b.dataset.k].ok;setTimeout(function(){fin(ok,false)},380);
+ }});
+ tm=setTimeout(function(){if(!done){done=true;fin(false,true)}},T);
+}
+window.addEventListener('keydown',function(e){var k='1234abcd'.indexOf(e.key.toLowerCase());if(k<0||e.target.tagName==='INPUT')return;var b=app.querySelectorAll('.opt')[k%4];if(b)b.click()});
+function brk(){
+ var h='<div class="brk"><h2 style="font-size:1.1rem">Tu desempeño por área</h2>';
+ Object.keys(COL).forEach(function(c){var x=CAT[c];if(!x)return;h+='<div><span>'+c+'</span><span class="tr"><i style="width:'+Math.round(x[0]/x[1]*100)+'%;background:'+COL[c]+'"></i></span><span class="small">'+x[0]+'/'+x[1]+'</span></div>'});
+ return h+'</div>';
 }
 var unsub=null,LINK=location.href.split('#')[0];
-function stop(){if(unsub){unsub();unsub=null}}
+function stop(){clearInterval(iv);if(unsub){unsub();unsub=null}}
 function compartir(ci,pts,b){
- var t='🎓 Saqué CI '+ci+' ('+pts+'/'+L.length+') en el Test de CI. ¿Me ganás? '+LINK;
+ var t='🎓 Saqué CI '+ci+' ('+pts+'/'+TOT+') en el Test de CI. ¿Me ganás? '+LINK;
  if(navigator.share){navigator.share({text:t}).catch(function(){});return}
  if(navigator.clipboard){navigator.clipboard.writeText(t).then(function(){b.textContent='¡Copiado! Pegalo en WhatsApp'},function(){b.textContent='No se pudo copiar'})}
 }
@@ -143,8 +199,8 @@ async function ranking(ci,pts){
  var box=document.getElementById('rk');
  try{
   var uid=user.uid,ref=doc(db,'scores',uid),sn=await getDoc(ref),old=sn.exists()?sn.data():null;
-  await addDoc(collection(db,'users',uid,'intentos'),{pts:pts,n:L.length,ci:ci,miss:miss,t:serverTimestamp()});
-  if(!old||pts>old.pts)await setDoc(ref,{name:nombre,ci:ci,pts:pts,n:L.length,t:serverTimestamp()});
+  await addDoc(collection(db,'users',uid,'intentos'),{pts:pts,n:TOT,ci:ci,miss:miss,t:serverTimestamp()});
+  if(!old||pts>old.pts)await setDoc(ref,{name:nombre,ci:ci,pts:pts,n:TOT,t:serverTimestamp()});
   box.innerHTML='<h2>Podio</h2><div class="pd" id="pd"></div><ol id="rl"></ol><h2 style="margin-top:22px">Tus intentos</h2><ol id="mi"></ol>';
   stop();
   unsub=onSnapshot(query(collection(db,'scores'),orderBy('pts','desc'),limit(30)),function(q){
@@ -159,10 +215,10 @@ async function ranking(ci,pts){
  }catch(e){box.innerHTML='<p class="small">No se pudo guardar o leer el ranking ('+esc(e.code||'error')+'). Revisá las reglas de Firestore.</p>'}
 }
 function diploma(){
- var fr=pts/L.length,ci=70+Math.round(fr*75);
+ var fr=pts/TOT,ci=70+Math.round(fr*75);
  var r=T.filter(function(x){return fr>=x.f})[0];
  var hoy=new Date().toLocaleDateString('es-HN',{day:'numeric',month:'long',year:'numeric'});
- app.innerHTML='<div class="dip"><h2>Diploma de Inteligencia</h2><p>Se otorga a</p><div class="nm">'+esc(nombre)+'</div><p style="margin-top:10px">por contestar '+pts+' de '+L.length+' preguntas correctas'+(miss?' ('+miss+' se le pasó el tiempo)':'')+', con un coeficiente intelectual de</p><div class="ci">'+ci+'</div><div class="ttl">'+r.t+'</div><p>'+r.m+'</p><div class="seal">OFICIAL</div><p class="small" style="margin:0">'+hoy+'</p></div><div class="btns"><button id="sh">Retar a mis amigos</button><button class="alt" id="re">Repetir el test</button><button class="alt" id="ot">Que lo haga otra persona</button></div><div class="rk" id="rk"><p class="small">Conectando al ranking…</p></div><p class="small" style="margin-top:14px">Tomá captura de pantalla para guardar tu diploma. Solo diversión.</p>';
+ app.innerHTML='<div class="dip"><h2>Diploma de Inteligencia</h2><p>Se otorga a</p><div class="nm">'+esc(nombre)+'</div><p style="margin-top:10px">por contestar '+pts+' de '+TOT+' preguntas correctas'+(miss?' ('+miss+' se le pasó el tiempo)':'')+', con un coeficiente intelectual de</p><div class="ci">'+ci+'</div><div class="ttl">'+r.t+'</div><p>'+r.m+'</p><div class="seal">OFICIAL</div><p class="small" style="margin:0">'+hoy+'</p></div>'+brk()+'<div class="btns"><button id="sh">Retar a mis amigos</button><button class="alt" id="re">Repetir el test</button><button class="alt" id="ot">Que lo haga otra persona</button></div><div class="rk" id="rk"><p class="small">Conectando al ranking…</p></div><p class="small" style="margin-top:14px">Tomá captura de pantalla para guardar tu diploma. Solo diversión.</p>';
  document.getElementById('re').onclick=empezar;
  document.getElementById('sh').onclick=function(){compartir(ci,pts,this)};
  ranking(ci,pts);
